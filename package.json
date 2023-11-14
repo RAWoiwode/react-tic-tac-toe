@@ -1,11 +1,18 @@
 {
   "dependencies": {
+    "@babel/plugin-transform-class-properties": "^7.23.3",
+    "@babel/plugin-transform-nullish-coalescing-operator": "^7.23.3",
+    "@babel/plugin-transform-numeric-separator": "^7.23.3",
+    "@babel/plugin-transform-optional-chaining": "^7.23.3",
+    "@babel/plugin-transform-private-methods": "^7.23.3",
+    "@jridgewell/sourcemap-codec": "^1.4.15",
+    "@rollup/plugin-terser": "^0.4.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-scripts": "^5.0.0"
+    "react-scripts": "^5.0.0",
+    "svgo": "^3.0.3"
   },
   "main": "/index.js",
-  "devDependencies": {},
   "name": "vy6j3f",
   "description": null,
   "version": "0.0.0",
@@ -14,5 +21,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
   }
 }
