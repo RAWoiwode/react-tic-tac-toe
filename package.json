@@ -14,7 +14,7 @@
   },
   "main": "/index.js",
   "name": "vy6j3f",
-  "description": null,
+  "description": "null",
   "version": "0.0.0",
   "scripts": {
     "start": "react-scripts start",
@@ -23,6 +23,20 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "eslint": "^8.53.0",
+    "eslint-plugin-react": "^7.33.2",
     "jest": "^27.5.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
