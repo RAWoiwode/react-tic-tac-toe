@@ -1,3 +1,4 @@
+import { BOARD_SIZE } from "../constants";
 import Square from "./Square";
 
 const calculateWinner = (squares) => {
@@ -42,14 +43,9 @@ const Board = ({ xIsNext, squares, onPlay }) => {
     if (calculateWinner(squares).winner || squares[i]) return;
 
     const nextSquares = squares.slice();
+    nextSquares[i] = xIsNext ? "X" : "O";
 
-    if (xIsNext) {
-      nextSquares[i] = "X";
-    } else {
-      nextSquares[i] = "O";
-    }
-
-    onPlay(nextSquares);
+    onPlay(nextSquares, i);
   };
 
   const renderSquare = (i) => {
@@ -65,12 +61,11 @@ const Board = ({ xIsNext, squares, onPlay }) => {
     );
   };
 
-  const boardSize = 3;
   let rows = [];
-  for (let row = 0; row < boardSize; row++) {
+  for (let row = 0; row < BOARD_SIZE; row++) {
     let boardSquares = [];
-    for (let col = 0; col < boardSize; col++) {
-      boardSquares.push(renderSquare(row * boardSize + col));
+    for (let col = 0; col < BOARD_SIZE; col++) {
+      boardSquares.push(renderSquare(row * BOARD_SIZE + col));
     }
 
     rows.push(

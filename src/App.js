@@ -1,15 +1,27 @@
 import { useState } from "react";
 import Board from "./components/Board";
+import { BOARD_SIZE } from "./constants";
 
 const Game = () => {
-  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [history, setHistory] = useState([
+    { squares: Array(9).fill(null), location: null },
+  ]);
   const [currentMove, setCurrentMove] = useState(0);
   const [isAscending, setIsAscending] = useState(true);
   const xIsNext = currentMove % 2 === 0;
-  const currentSquares = history[currentMove];
+  const currentSquares = history[currentMove].squares;
+  console.log(history);
 
-  const handlePlay = (nextSquares) => {
-    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+  const handlePlay = (nextSquares, clickedSquareIndex) => {
+    const row = Math.floor(clickedSquareIndex / BOARD_SIZE);
+    const col = clickedSquareIndex % BOARD_SIZE;
+    const moveInfo = {
+      squares: nextSquares,
+      location: { row: row + 1, col: col + 1 },
+    };
+    // const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    const nextHistory = history.slice(0, currentMove + 1).concat([moveInfo]);
+
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
   };
@@ -22,7 +34,7 @@ const Game = () => {
     setIsAscending(!isAscending);
   };
 
-  const moves = history.map((_, move) => {
+  const moves = history.map((square, move) => {
     let description;
 
     if (move == currentMove) {
@@ -33,9 +45,9 @@ const Game = () => {
         </li>
       );
     } else if (move > 0) {
-      description = "Go to move #" + move;
+      description = `Go to move #${move} - (${square.location?.row}, ${square.location?.col})`;
     } else {
-      description = "Go to game start";
+      description = `Go to game start`;
     }
 
     return (
